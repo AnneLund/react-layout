@@ -35,6 +35,14 @@ export const MainNav = styled.nav`
     }
   }
 
+  .cart {
+    display: flex;
+    justify-content: center;
+    span {
+      margin-right: -10px;
+    }
+  }
+
   button {
     padding: 0.5em 1.5em;
     background-color: ${(props) => props.theme.colors.button2};

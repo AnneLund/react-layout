@@ -4,6 +4,7 @@ import { AiOutlineShoppingCart } from "react-icons/ai";
 import useIsOpenNavStore from "./useIsOpenNavStore";
 import { useLoginStore } from "../../../Pages/Login/useLoginStore";
 import TinyCart from "../../ShoppingCart/TinyCart";
+import Button from "../Button";
 
 const Header = () => {
   const { isOpen, setIsOpen } = useIsOpenNavStore();
@@ -42,10 +43,10 @@ const Header = () => {
                 onClick={() => {
                   setLoggedIn(false, "", "", "");
                 }}>
-                <button>Log ud</button>
+                <Button>Log ud</Button>
               </li>
               <li>
-                <NavLink to="/cart">
+                <NavLink className="cart" to="/cart">
                   <AiOutlineShoppingCart />
                   <TinyCart />
                 </NavLink>

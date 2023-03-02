@@ -8,7 +8,6 @@ import six from "../Assets/Images/reb.jpg";
 import seven from "../Assets/Images/se.jpg";
 import eight from "../Assets/Images/sjov.jpg";
 import nine from "../Assets/Images/slik.jpg";
-import { useProductStore } from "../Components/Hooks/useProductStore";
 import { Page } from "../Layout/Page";
 import { Gallery } from "../Styles/Gallery";
 
@@ -16,7 +15,7 @@ const About = () => {
   const images = [one, two, three, four, five, six, seven, eight, nine];
 
   return (
-    <Page>
+    <Page title="About">
       <h1>About</h1>
       <Gallery>
         {images.map((img, i) => {

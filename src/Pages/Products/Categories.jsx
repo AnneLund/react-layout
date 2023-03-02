@@ -2,29 +2,33 @@ import React, { useEffect, useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 import { Page } from "../../Layout/Page";
 import AppService from "../../Components/Appservices/Appservice";
+import useGetListItemsByEndPoint from "../../Components/Hooks/useGetListItemsByEndPoint";
 
 const Categories = () => {
-  const [cats, setCats] = useState([]);
+  const { state: categories } = useGetListItemsByEndPoint("categories");
+  console.log(categories);
+  // const [cats, setCats] = useState([]);
 
-  useEffect(() => {
-    const fetchCategories = async () => {
-      try {
-        const response = await AppService.GetList("categories");
-        if (response.data) {
-          setCats(response.data.items);
-        }
-      } catch (error) {
-        console.error(error);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchCategories = async () => {
+  //     try {
+  //       const response = await AppService.GetList("categories");
+  //       if (response.data) {
+  //         console.log(response.data);
+  //         setCats(response.data.items);
+  //       }
+  //     } catch (error) {
+  //       console.error(error);
+  //     }
+  //   };
 
-    fetchCategories();
-  }, [cats]);
+  //   fetchCategories();
+  // }, []);
 
   return (
-    <Page>
+    <Page title="Produkter">
       <h1>Produkter</h1>
-      <ul>
+      {/* <ul>
         {cats.map((cat, i) => {
           return (
             <li key={i}>
@@ -34,7 +38,7 @@ const Categories = () => {
             </li>
           );
         })}
-      </ul>
+      </ul> */}
       <Outlet />
     </Page>
   );
