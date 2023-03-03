@@ -21,7 +21,7 @@ const About = () => {
         {images.map((img, i) => {
           return (
             <picture key={i}>
-              <img src={img} />
+              <img src={img} alt="Børn" />
             </picture>
           );
         })}

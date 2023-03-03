@@ -10,8 +10,8 @@ const GetList = (e) => {
   });
 };
 
-const GetDetail = (e, id) => {
-  return Axios.get(`${URL}/${e}/${id}`, {
+const GetDetails = (e, id) => {
+  return Axios.get(`${URL}/${BaseURL}/${e}/${id}`, {
     headers: AuthHeader(),
   });
 };
@@ -36,7 +36,7 @@ const Delete = (e, id) => {
 
 const AppService = {
   GetList,
-  GetDetail,
+  GetDetails,
   Create,
   Update,
   Delete,

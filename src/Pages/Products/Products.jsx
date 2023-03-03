@@ -1,38 +1,29 @@
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import Button from "../../Components/Partials/Button";
-import AppService from "../../Components/Appservices/Appservice";
-import { useShoppingCardStore } from "../../Components/ShoppingCart/useShoppingCard";
+import React from "react";
+import { Link, useParams } from "react-router-dom";
 import { GridContainer } from "../../Styles/GridContainer";
+import useGetProductById from "../../Components/Hooks/useGetProductById";
+import LikeButton from "../../Components/Partials/LikeButton";
+import Card from "../../Components/Partials/Card";
 
 const Products = () => {
   const { id } = useParams();
-  const [items, setItems] = useState([]);
+  const { state: categories } = useGetProductById("categories", id);
+
   // const { increaseCartQuantity } = useShoppingCardStore();
-
-  useEffect(() => {
-    const renderProducts = async () => {
-      try {
-        const response = await AppService.GetList(`categories/${id}`);
-        if (response.data) {
-          console.log(response.data.item);
-          setItems(response.data.item);
-        }
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    renderProducts();
-  }, []);
 
   return (
     <GridContainer>
-      {items?.item?.products?.map((item, i) => (
-        <figure key={i}>
-          <img src={item.image.fullpath} alt={item.title} />
-          {/* <Button onClick={() => increaseCartQuantity(item.id, item.title, item.image.fullpath)}>Læg i kurv</Button> */}
-        </figure>
+      {categories?.item?.products?.map((item, i) => (
+        <Card key={i}>
+          <Link to={`/productdetails/${item.id}`}>
+            <img src={item.image.fullpath} alt={item.title} />
+            <figcaption>
+              <h3>{item.title}</h3>
+            </figcaption>
+            {/* <Button onClick={() => increaseCartQuantity(item.id, item.title, item.image.fullpath)}>Læg i kurv</Button> */}
+          </Link>
+          <LikeButton />
+        </Card>
       ))}
     </GridContainer>
   );
